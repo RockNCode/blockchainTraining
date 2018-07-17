@@ -9,6 +9,7 @@ public:
 
   /// @abi action
   void hello(name user) {
+    require_auth(user);
     print("Hello, ",name(user));
   }
 
