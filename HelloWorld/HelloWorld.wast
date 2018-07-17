@@ -6,8 +6,8 @@
  (type $FUNCSIG$i (func (result i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
  (type $FUNCSIG$iiii (func (param i32 i32 i32) (result i32)))
- (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$vj (func (param i64)))
+ (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$v (func))
  (import "env" "action_data_size" (func $action_data_size (result i32)))
  (import "env" "current_time" (func $current_time (result i64)))
@@ -16,6 +16,7 @@
  (import "env" "printn" (func $printn (param i64)))
  (import "env" "prints" (func $prints (param i32)))
  (import "env" "read_action_data" (func $read_action_data (param i32 i32) (result i32)))
+ (import "env" "require_auth" (func $require_auth (param i64)))
  (import "env" "require_auth2" (func $require_auth2 (param i64 i64)))
  (table 2 2 anyfunc)
  (elem (i32.const 0) $__wasm_nullptr $_ZN10HelloWorld5helloEN5eosio4nameE)
@@ -580,6 +581,9 @@
   )
  )
  (func $_ZN10HelloWorld5helloEN5eosio4nameE (type $FUNCSIG$vij) (param $0 i32) (param $1 i64)
+  (call $require_auth
+   (get_local $1)
+  )
   (call $prints
    (i32.const 128)
   )
